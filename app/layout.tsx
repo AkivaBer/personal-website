@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Dr. Deena Durst Berkowitz, MD, MPH | Pediatric Emergency Medicine",
+  title: "Dr. Deena Berkowitz, MD, MPH | Pediatric Emergency Medicine",
   description: "Official portfolio of Dr. Deena Berkowitz, Associate Division Chief of Emergency Medicine at Children's National Hospital and Associate Professor at GWU.",
 };
 
