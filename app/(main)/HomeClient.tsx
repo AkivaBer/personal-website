@@ -19,7 +19,21 @@ import {
   ArrowRight
 } from 'lucide-react';
 
-export default function Home() {
+interface HomeClientProps {
+  homepageData: {
+    heroTitleLine1: string;
+    heroTitleLine2: string;
+    heroDescription: string;
+  };
+  publicationsData: Array<{
+    title: string;
+    year: string;
+    journal: string;
+    tag: string;
+  }>;
+}
+
+export default function HomeClient({ homepageData, publicationsData }: HomeClientProps) {
   const fadeIn = {
     initial: { opacity: 0, y: 20 },
     animate: { opacity: 1, y: 0 },
@@ -48,7 +62,7 @@ export default function Home() {
           <div className="hidden space-x-8 text-sm font-semibold text-slate-600 md:flex">
             <a href="#expertise" className="hover:text-primary transition-colors">Expertise</a>
             <a href="#legal" className="hover:text-primary transition-colors">Legal</a>
-            <a href="#fellowship" className="hover:text-primary transition-colors">Fellowship</a>
+            <a href="https://www.childrensnational.org/for-healthcare-professionals/healthcare-education/graduate-medical-education/residencies-and-fellowships/acute-care" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Fellowship</a>
             <a href="#research" className="hover:text-primary transition-colors">Research</a>
             <a href="#contact" className="rounded-full bg-slate-900 px-5 py-2 text-white hover:bg-slate-800 transition-all">Contact</a>
           </div>
@@ -78,17 +92,17 @@ export default function Home() {
                 variants={fadeIn}
                 className="text-6xl font-black tracking-tight text-slate-900 sm:text-7xl mb-8 leading-[1.1]"
               >
-                Leadership in <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Clinical Excellence</span>
+                <span dangerouslySetInnerHTML={{ __html: homepageData.heroTitleLine1 }} />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">{homepageData.heroTitleLine2}</span>
               </motion.h1>
               <motion.p variants={fadeIn} className="text-xl text-slate-600 mb-10 max-w-xl leading-relaxed">
-                Associate Division Chief of Emergency Medicine at <span className="font-semibold text-slate-900">Children&apos;s National Hospital</span> and Associate Professor at <span className="font-semibold text-slate-900">GWU</span>. Bridging clinical mastery with medical-legal expertise and academic leadership.
+                {homepageData.heroDescription}
               </motion.p>
               <motion.div variants={fadeIn} className="flex flex-wrap items-center gap-4">
                 <a href="#legal" className="group flex items-center gap-2 rounded-full bg-slate-900 px-8 py-4 text-sm font-bold text-white shadow-2xl shadow-slate-200 hover:bg-slate-800 transition-all hover:-translate-y-1">
                   Medical-Legal Services <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </a>
-                <a href="#fellowship" className="flex items-center gap-2 rounded-full border-2 border-slate-200 px-8 py-4 text-sm font-bold text-slate-600 hover:border-slate-900 hover:text-slate-900 transition-all">
+                <a href="https://www.childrensnational.org/for-healthcare-professionals/healthcare-education/graduate-medical-education/residencies-and-fellowships/acute-care" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 rounded-full border-2 border-slate-200 px-8 py-4 text-sm font-bold text-slate-600 hover:border-slate-900 hover:text-slate-900 transition-all">
                   Fellowship Programs
                 </a>
               </motion.div>
@@ -202,7 +216,7 @@ export default function Home() {
                   ))}
                 </ul>
               </div>
-              <a href="https://childrensnational.org/healthcare-providers/medical-education/fellowships/pediatric-acute-and-urgent-care-fellowship" target="_blank" className="text-secondary font-bold flex items-center gap-2 group">
+              <a href="https://www.childrensnational.org/for-healthcare-professionals/healthcare-education/graduate-medical-education/residencies-and-fellowships/acute-care" target="_blank" rel="noopener noreferrer" className="text-secondary font-bold flex items-center gap-2 group">
                 Program Details <ExternalLink className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </a>
             </motion.div>
@@ -287,26 +301,7 @@ export default function Home() {
           </div>
           
           <div className="grid gap-10">
-            {[
-              {
-                year: "2023",
-                title: "Delays in treatment and disposition attributable to undertriage of pediatric emergency medicine patients",
-                journal: "American Journal of Emergency Medicine",
-                tag: "Operational Research"
-              },
-              {
-                year: "2022",
-                title: "Race, ethnicity, and language association with Undertriage in Pediatric emergency medicine",
-                journal: "Medical Care Research and Review",
-                tag: "Health Equity"
-              },
-              {
-                year: "2020",
-                title: "Development of Academic Pediatric Urgent Care Fellowships",
-                journal: "Journal of Pediatrics",
-                tag: "Medical Education"
-              }
-            ].map((pub, i) => (
+            {publicationsData.map((pub, i) => (
               <motion.div 
                 key={i}
                 initial={{ opacity: 0, x: -20 }}
@@ -400,13 +395,13 @@ export default function Home() {
                 <ul className="space-y-4 font-bold text-slate-600">
                   <li><a href="#expertise" className="hover:text-primary">Expertise</a></li>
                   <li><a href="#legal" className="hover:text-primary">Legal Services</a></li>
-                  <li><a href="#fellowship" className="hover:text-primary">Fellowship</a></li>
+                  <li><a href="https://www.childrensnational.org/for-healthcare-professionals/healthcare-education/graduate-medical-education/residencies-and-fellowships/acute-care" target="_blank" rel="noopener noreferrer" className="hover:text-primary">Fellowship</a></li>
                   <li><a href="#research" className="hover:text-primary">Research</a></li>
                 </ul>
               </div>
               <div>
                 <h4 className="font-black text-xs uppercase tracking-[0.2em] text-slate-400 mb-8">Connect</h4>
-                <div className="flex gap-4">
+                <div id="contact" className="flex gap-4">
                   <a href="https://www.linkedin.com/in/deena-b-648612113/" className="p-4 rounded-2xl bg-slate-50 text-slate-400 hover:text-primary hover:bg-white hover:shadow-xl transition-all border border-transparent hover:border-slate-100">
                     <Linkedin className="w-6 h-6" />
                   </a>
